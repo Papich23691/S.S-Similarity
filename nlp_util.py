@@ -1,5 +1,6 @@
 
 import spacy
+import warnings
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -18,4 +19,10 @@ def tokenize(sentence):
                 tag=[w.pos_,w.text]
                 tags.append(tag)
     return tags
+
+def compare(word1,word2):
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        return nlp(word1).similarity(nlp(word2))
+
 
