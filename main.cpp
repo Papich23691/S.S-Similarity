@@ -1,11 +1,12 @@
 
 #include <iostream>
 #include <string>
-#include "similarity.h"
+#include "nlp.h"
 
 using namespace std;
 
 int main()
 {
+    list<list<string> > l=tokenize("hi there");
     return 0;
 }

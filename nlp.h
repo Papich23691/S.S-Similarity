@@ -1,9 +1,10 @@
-#ifndef SIM    // To make sure you don't declare the function more than once by including the header multiple times.
-#define SIM
+#ifndef NLP   
+#define NLP
 
 #include <iostream>
 #include <string>
 #include <list>
+#include <Python.h>
 
 using namespace std;
 
