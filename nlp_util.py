@@ -10,6 +10,8 @@ def tokenize(sentence):
     if doc != [] :
         tags.append([doc[0].pos_])
         for w in doc :
+            if w.pos_ == "PUNCT" :
+                continue
             istag=False 
             for t in tags :
                 if t[0] == w.pos_ :
