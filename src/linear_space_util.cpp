@@ -7,7 +7,7 @@
 
 double dot_product(list<double> v1, list<double> v2) {
   double sum = 0;
-  int i = 0;
+  unsigned long i = 0;
   for (i = 0; i < v1.size(); i++) {
     list<double>::iterator v1s = v1.begin();
     list<double>::iterator v2s = v2.begin();
