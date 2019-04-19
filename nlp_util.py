@@ -2,7 +2,7 @@
 import spacy
 import warnings
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_lg")
 
 def tokenize(sentence):
     doc = nlp(sentence)

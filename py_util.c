@@ -1,9 +1,11 @@
 #include "py_util.h"
 #include "Python.h"
 #include <stdio.h>
-
 #define PFILE "nlp_util"
 #define U_PFILE L"nlp_util"
+
+
+
 /**
  * Initializing python with specific file
  * **(Avoid using multiple times)**
@@ -49,3 +51,6 @@ PyObject *py_function(char *fname, const char *argument, const char *argument2,
   Py_DECREF(pFunc);
   return pValue;
 }
+#ifdef INIT
+#error ("Multiple use of Py_Init")
+#endif

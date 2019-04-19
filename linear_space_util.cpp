@@ -3,7 +3,7 @@
 #include <list>
 #include <string>
 
-#define MIN_VALUE 0.4
+#define MIN_VALUE 0.5
 
 double dot_product(list<double> v1, list<double> v2) {
   double sum = 0;
@@ -27,7 +27,6 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
   bool isfound = false;
   for (i = s1.begin(); i != s1.end(); ++i) {
     for (j = s2.begin(); j != s2.end(); ++j) {
-
       if ((*(i->begin())) == (*(j->begin()))) {
         isfound = true;
         for (n = ++(i->begin()); n != i->end(); ++n) {
@@ -92,6 +91,36 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
       basis.push_back(v);
     }
   }
-  printf("~~~~~~~%d~~~~~~~\n", c);
   return basis;
+}
+
+list<double> create_vector(list<list<string>> s, list<list<string>> basis) {
+  list<list<string>>::iterator i;
+  list<string>::iterator j;
+  list<double> v;
+  for (i = basis.begin(); i != basis.end(); i++) {
+    if (element_of_sentence(s, (*(i->begin()))))
+      v.push_back(1);
+    else if (element_of_sentence(s, (*++(i->begin()))))
+    {
+      j = i->begin();
+      advance(j,2);
+      v.push_back(stod((*j)));
+    }
+    else
+      v.push_back(0);
+  }
+  return v;
+}
+
+bool element_of_sentence(list<list<string>> s, string word) {
+    list<list<string>>::iterator i;
+    list<string>::iterator j;
+    for (i = s.begin(); i != s.end(); i++) {
+      for (j = ++(i->begin()); j != i->end(); j++) {
+        if ((*j) == word)
+          return true;
+      }
+    }
+  return false;
 }
