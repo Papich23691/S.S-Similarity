@@ -5,6 +5,7 @@
 
 #define MIN_VALUE 0.5
 
+/* Calculating the dot product between 2 vectors */
 double dot_product(list<double> v1, list<double> v2) {
   double sum = 0;
   unsigned long i = 0;
@@ -18,17 +19,19 @@ double dot_product(list<double> v1, list<double> v2) {
   return sum;
 }
 
+/* Creates a basis for the sentence linear space */
 list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
   list<list<string>> basis;
   list<list<string>>::iterator i, j;
   list<string>::iterator n, m, maxw, maxw2;
   double max, sim;
-  int c = 0;
   bool isfound = false;
+  /* Comparing only word with the same pos tag */
   for (i = s1.begin(); i != s1.end(); ++i) {
     for (j = s2.begin(); j != s2.end(); ++j) {
       if ((*(i->begin())) == (*(j->begin()))) {
         isfound = true;
+        /* 2 words are consider the same if the similarity between them is the maximum similarity compared to other words and their similarity is above MIN_VALUE */
         for (n = ++(i->begin()); n != i->end(); ++n) {
           max = MIN_VALUE;
           list<string> v;
@@ -38,7 +41,6 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
             if ((*m) == "\0")
               continue;
             sim = compare(*n, *m);
-            ++c;
             if (sim >= max) {
               max = sim;
               maxw = m;
@@ -46,6 +48,7 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
                 break;
             }
           }
+          /* Checks the other way around and makes sure the two words are indeed the most similar words to one another */
           if (max < 1)
             max = MIN_VALUE;
           if (maxw != j->end()) {
@@ -53,7 +56,6 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
             if (max < 1) {
               for (m = ++(i->begin()); m != i->end(); ++m) {
                 sim = compare(*maxw, *m);
-                ++c;
                 if (sim >= max) {
                   max = sim;
                   maxw2 = m;
@@ -74,6 +76,7 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
         break;
       }
     }
+    /* If a group of the same pos tag doesn't have another corresponding group with the same pos tag in the other sentence, adds all the words inside of it to the basis */
     if (!isfound) {
       for (n = ++(i->begin()); n != i->end(); ++n) {
         list<string> v;
@@ -82,6 +85,7 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
       }
     }
   }
+  /* Adds all the words that are left from the second sentence */
   for (j = s2.begin(); j != s2.end(); ++j) {
     for (m = ++(j->begin()); m != j->end(); ++m) {
       if ((*m) == "\0")
@@ -94,6 +98,13 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
   return basis;
 }
 
+/**
+ * @brief Using the basis created to create a vector
+ * If the first word is in the sentence the scalar is considered 1 
+ * otherwise if the second word is is the sentence the similarity between them is the scalar
+ * else the word is not in the sentence so it refers to it as a zero
+ * 
+ */
 list<double> create_vector(list<list<string>> s, list<list<string>> basis) {
   list<list<string>>::iterator i;
   list<string>::iterator j;
@@ -113,6 +124,7 @@ list<double> create_vector(list<list<string>> s, list<list<string>> basis) {
   return v;
 }
 
+/* Finds if a word is a part of a sentence */
 bool element_of_sentence(list<list<string>> s, string word) {
     list<list<string>>::iterator i;
     list<string>::iterator j;

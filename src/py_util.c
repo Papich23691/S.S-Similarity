@@ -51,6 +51,3 @@ PyObject *py_function(char *fname, const char *argument, const char *argument2,
   Py_DECREF(pFunc);
   return pValue;
 }
-#ifdef INIT
-#error ("Multiple use of Py_Init")
-#endif
