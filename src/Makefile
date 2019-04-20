@@ -1,7 +1,7 @@
 CC = g++
-SRC = src/main.cpp src/py_util.c src/nlp.cpp src/linear_space_util.cpp
-OBJ = src/run
-INCLUDE_DIR = include
+SRC = main.cpp py_util.c nlp.cpp linear_space_util.cpp
+OBJ = run
+INCLUDE_DIR = ../include
 CFLAGS+=$(shell python3-config --cflags)
 LDFLAGS+=$(shell python3-config --ldflags)
 

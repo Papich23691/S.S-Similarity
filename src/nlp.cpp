@@ -1,17 +1,33 @@
 #include "nlp.h"
 #include "Python.h"
 #include "py_util.h"
+#include "linear_space_util.h"
 #include <iostream>
 #include <list>
 #include <string>
 
 using namespace std;
+bool nlp::init = false;
+
+nlp::nlp(){
+  if (init)
+    printf("Initialized nlp multiple time\n");
+  else
+    {
+      Py_Init();
+      init = true;
+    }
+}
+
+nlp::~nlp(){
+  Py_Finalize();
+}
 
 /**
  * Using python spaCy to create tokens list into c++ list
  * Returning list<list<string>> List of tokens
  */
-list<list<string> > tokenize(string sentence) {
+list<list<string> > nlp::tokenize(string sentence) {
   list<list<string> > tokens;
   PyObject *pValue, *item = NULL;
   int i, j, len = 0, len1 = 0;
@@ -41,7 +57,7 @@ list<list<string> > tokenize(string sentence) {
  * Using python spaCy to compare 2 words.
  * Returning similarity between words
  */
-double compare(string word1, string word2) {
+double nlp::compare(string word1, string word2) {
   PyObject *pValue;
   double score = 0;
   pValue = py_function("compare", word1.c_str(), word2.c_str(), 2);
@@ -49,3 +65,13 @@ double compare(string word1, string word2) {
   Py_DECREF(pValue);
   return score;
 }
+
+ double nlp::semantic_similarity(string sentence1,string sentence2)
+ {
+   list<list<string>> t1 = this->tokenize(sentence1);
+   list<list<string>> t2 = this->tokenize(sentence2);
+   list<list<string>> B = create_basis(t1, t2,this);
+   list<double> v1 = create_vector(t1,B);
+   list<double> v2=create_vector(t2,B);
+   return 100 * (dot_product(v1,v2)/dot_product(v1,v1));
+ }

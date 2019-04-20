@@ -20,7 +20,7 @@ double dot_product(list<double> v1, list<double> v2) {
 }
 
 /* Creates a basis for the sentence linear space */
-list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
+list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2,nlp *nl) {
   list<list<string>> basis;
   list<list<string>>::iterator i, j;
   list<string>::iterator n, m, maxw, maxw2;
@@ -40,7 +40,7 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
           for (m = ++(j->begin()); m != j->end(); ++m) {
             if ((*m) == "\0")
               continue;
-            sim = compare(*n, *m);
+            sim = nl->compare(*n, *m);
             if (sim >= max) {
               max = sim;
               maxw = m;
@@ -55,7 +55,7 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2) {
             maxw2 = n;
             if (max < 1) {
               for (m = ++(i->begin()); m != i->end(); ++m) {
-                sim = compare(*maxw, *m);
+                sim = nl->compare(*maxw, *m);
                 if (sim >= max) {
                   max = sim;
                   maxw2 = m;
