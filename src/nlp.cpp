@@ -1,7 +1,4 @@
 #include "nlp.h"
-#include "Python.h"
-#include "py_util.h"
-#include "linear_space_util.h"
 #include <iostream>
 #include <list>
 #include <string>
@@ -47,8 +44,8 @@ list<list<string> > nlp::tokenize(string sentence) {
       tokens.push_back(token);
     }
     if (item)
-      Py_DECREF(item);
-    Py_DECREF(pValue);
+      Py_XDECREF(item);
+    Py_XDECREF(pValue);
   }
   return tokens;
 }
@@ -62,7 +59,7 @@ double nlp::compare(string word1, string word2) {
   double score = 0;
   pValue = py_function("compare", word1.c_str(), word2.c_str(), 2);
   score = PyFloat_AsDouble(pValue);
-  Py_DECREF(pValue);
+  Py_XDECREF(pValue);
   return score;
 }
 
@@ -73,5 +70,6 @@ double nlp::compare(string word1, string word2) {
    list<list<string>> B = create_basis(t1, t2,this);
    list<double> v1 = create_vector(t1,B);
    list<double> v2=create_vector(t2,B);
-   return 100 * (dot_product(v1,v2)/dot_product(v1,v1));
+   //return dot_product(v1,v2)/sqrt(dot_product(v1,v1) * dot_product(v2,v2));
+   return dot_product(v1,v2)/dot_product(v1,v1);
  }

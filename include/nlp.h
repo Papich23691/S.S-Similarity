@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include <Python.h>
+#include "py_util.h"
 
 using namespace std;
 
@@ -19,5 +19,6 @@ class nlp{
         static bool init;
 };
 
+#include "linear_space_util.h"
 
 #endif

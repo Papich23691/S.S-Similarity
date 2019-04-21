@@ -112,7 +112,7 @@ list<double> create_vector(list<list<string>> s, list<list<string>> basis) {
   for (i = basis.begin(); i != basis.end(); i++) {
     if (element_of_sentence(s, (*(i->begin()))))
       v.push_back(1);
-    else if (element_of_sentence(s, (*++(i->begin()))))
+    else if (i->size()>1 && element_of_sentence(s, (*++(i->begin()))))
     {
       j = i->begin();
       advance(j,2);

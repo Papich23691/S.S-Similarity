@@ -36,7 +36,7 @@ PyObject *py_function(char *fname, const char *argument, const char *argument2,
     PyErr_Print();
     exit(1);
   }
-  Py_DECREF(pModule);
+  Py_XDECREF(pModule);
   if (!(argc - 1))
     pArgs = Py_BuildValue("(s)", argument);
   else if (argc - 1)
@@ -47,7 +47,7 @@ PyObject *py_function(char *fname, const char *argument, const char *argument2,
     PyErr_Print();
     exit(1);
   }
-  Py_DECREF(pArgs);
-  Py_DECREF(pFunc);
+  Py_XDECREF(pArgs);
+  Py_XDECREF(pFunc);
   return pValue;
 }
