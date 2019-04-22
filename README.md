@@ -1,12 +1,12 @@
 # Semantic-similarity
-> A tool used to compute the semantic similarity between 2 sentences
+> A tool used to compute the semantic similarity between 2 sentences<br/>
+You can view this tool accuracy in this [table](#accuracy)
 
 </br>
 
 ## Table of contents
 [Baby Steps](#baby-steps)  
 [Sentence Semantic Similarity](#ss)                                  
-[Python-C-api](#py_info)  
 [spaCy Tools](#spacy)       
 [Reference and License](#license)  
 
@@ -49,7 +49,7 @@ nlp [object name];
 [object name].semantic_similarity(Sentence_1,Sentence_2);
 ```
 The function will return a number between 0 and 1 ( Closer to 1 is more similar )
-### Algorithm in a nutshell
+### The algorithm in a nutshell
 ##### POS tagging
 First of all the 2 sentences are divided to part of speech tags in order to reduce time <br/>
 complexity and to make the algorithm more accurate ( only words which have the same tags are being compared ).<br/><br/>
@@ -58,9 +58,9 @@ The final result will be calculated using a vector representation of each senten
 we will need a vector space basis.
 ##### Linear space basis
 All the sentences can be represented by the union of the words in the first sentence and the second sentence. <br/>
-But by having similar semantic field with one another some words in one sentence can be represented as a projection on another word in the another sentence ( In the linear space ). <br/> It means that a sentence can be represented using words which are not a part of it as long <br/>
+But by having similar semantic fields with one another some words in one sentence can be represented as a projection on another word in the another sentence ( In the linear space ). <br/> It means that a sentence can be represented using words which are not a part of it as long <br/>
 as certain words in the sentence can be represented as a projection on them.<br/><br/>
-A word is not considered orthogonal to another word (it has a pr by James O’Sheaojection over it) if they are "similar".<br/>
+A word is not considered orthogonal to another word (it has a projection over it) if they are "similar".<br/>
 Comparing only words with the same pos tag, words which are similar to one another are defined by this function.
 
 ![equation of similarity](https://latex.codecogs.com/svg.latex?f%20%3A%20S1%20%5Clongrightarrow%20S2%20%5C%5C%20%5C%5Cf%20%3D%20%5C%7B%28x%2Cy%29%20%5C%20%7C%20%5C%20x%20%5Cin%20S1%2C%20y%20%5Cin%20S2%2Csim%28x%2Cy%29%3E0.5%20%5Cland%20%5Cforall%20z%20%5Cin%20S2%2C%20%5Cforall%20w%20%5Cin%20S1%20%2C%20%28sim%28x%2Cy%29%20%5Cgeq%20%28x%2Cz%29%20%5Cland%20sim%28x%2Cy%29%20%5Cgeq%20%28y%2Cw%29%5C%7D%24) 
@@ -84,6 +84,8 @@ The result will be calculated by using cosine similarity and by calculating the 
 Using the benchmark data base by James O’Shea [[1]](#license) <br/>
 I took multiple examples which are shown in this table (Using the more accurate spaCy model)<br/>
 
+<a name="accuracy"/>
+
 Sentence 1 | Sentence 2 | Human benchmark | Similarity algorithm | 
 ---        |    ---     |       ---       |         ---          |
 Midday is 12 oclock in the middle of the day.    | Noon is 12 oclock in the middle of the day.       |0.9550| 0.968959|
@@ -100,6 +102,13 @@ A cock is an adult male chicken.   | A rooster is an adult male chicken.  |0.862
 When you make a journey, you travel from one place to another.    | A voyage is a long journey on a ship or in a spacecraft.     |0.3600      | 0.315914|
 
 
+<a name="spacy"/>
+
+## spaCy Tools.
+Becuase of the lack of nlp tools in C++ I used spaCy.<br/>
+spaCy is an open source nlp library which is used in this project. <br/>
+I chose spaCy over other libraries such as NLTK because of it's accuracy and efficiency as shown [here](https://spacy.io/usage/facts-figures)<br/>
+In order to use the pos tagger and the similarity tool of spaCy in C++ simply create an nlp object as shown before.
 
 
 <a name="license"/>
