@@ -19,7 +19,7 @@ def tokenize(sentence):
     if doc != [] :
         tags.append([doc[0].pos_])
         for w in doc :
-            if w.pos_ == "PUNCT" :
+            if w.pos_ == "PUNCT" or w.lemma_ == "be" or w.pos_ == "DET":
                 continue
             istag=False 
             for t in tags :

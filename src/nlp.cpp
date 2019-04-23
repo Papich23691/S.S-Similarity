@@ -70,6 +70,5 @@ double nlp::compare(string word1, string word2) {
    list<list<string>> B = create_basis(t1, t2,this);
    list<double> v1 = create_vector(t1,B);
    list<double> v2=create_vector(t2,B);
-   //return dot_product(v1,v2)/sqrt(dot_product(v1,v1) * dot_product(v2,v2));
    return dot_product(v1,v2)/dot_product(v1,v1);
  }

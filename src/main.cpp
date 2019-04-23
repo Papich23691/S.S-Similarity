@@ -8,7 +8,7 @@ using namespace std;
 int main(int argc,char ** argv) {
   /* Quick Examples */
   nlp n;
- double res1 = n.semantic_similarity("A grin is a broad smile.","A smile is the expression that you have on your face when you are pleased or amused, or when you are being friendly.");
+double res1 = n.semantic_similarity("Midday is 12 oclock in the middle of the day.","Noon is 12 oclock in the middle of the day.");
 
  printf("%f \n",res1);
  
