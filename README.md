@@ -88,18 +88,20 @@ I took multiple examples which are shown in this table (Using the more accurate 
 
 Sentence 1 | Sentence 2 | Human benchmark | Similarity algorithm | 
 ---        |    ---     |       ---       |         ---          |
-Midday is 12 oclock in the middle of the day.    | Noon is 12 oclock in the middle of the day.       |0.9550| 0.968959|
-A boy is a child who will grow up to be a man.    | A lad is a young man or boy.      |0.5800         | 0.600000  |
-The coast is an area of land that is next to the sea.  | The shores or shore of a sea, lake, or wide river is the land along the edge of it.    |0.5875        | 0.692073             |
-A furnace is a container or enclosed space in which a very hot fire is made, for example, to melt metal, burn rubbish, or produce steam.    | A stove is a piece of equipment which provides heat, either for cooking or for heating a room.     |0.3475      | 0.489148 |
-A bird is a creature with feathers and wings, females lay eggs, and most birds can fly. | A cock is an adult male chicken.  |0.1625      | 0.314249    |
-In former times, serfs were a class of people who had to work on a particular persons land and could not leave without that persons permission.|A slave is someone who is the property of another person and has to work for that person.|0.4825|0.483493 |
-An autograph is the signature of someone famous which is specially written for a fan to keep. | The shores or shore of a sea, lake, or wide river is the land along the edge of it.  |0.0050| 0.411809|
-An automobile is a car.|A car is a motor vehicle with room for a small number of passengers.|0.5575      |0.666667|
-A forest is a large area where trees grow close together.|Woodland is land with a lot of trees.|0.6275     | 0.428571  | 
-An automobile is a car.|In legends and fairy stories, a wizard is a man who has magic powers.|0.0200    | 0.500000  | 
-A cock is an adult male chicken.   | A rooster is an adult male chicken.  |0.8625        | 0.857143 |
-When you make a journey, you travel from one place to another.    | A voyage is a long journey on a ship or in a spacecraft.     |0.3600      | 0.315914|
+Midday is 12 oclock in the middle of the day.    | Noon is 12 oclock in the middle of the day.       |0.9550| 0.955656|
+A boy is a child who will grow up to be a man.    | A lad is a young man or boy.      |0.5800         | 0.666667   |
+The coast is an area of land that is next to the sea.  | The shores or shore of a sea, lake, or wide river is the land along the edge of it.    |0.5875        | 0.591532              |
+A furnace is a container or enclosed space in which a very hot fire is made, for example, to melt metal, burn rubbish, or produce steam.    | A stove is a piece of equipment which provides heat, either for cooking or for heating a room.     |0.3475      | 0.318863 |
+A bird is a creature with feathers and wings, females lay eggs, and most birds can fly. | A cock is an adult male chicken.  |0.1625      | 0.205201    |
+In former times, serfs were a class of people who had to work on a particular persons land and could not leave without that persons permission.|A slave is someone who is the property of another person and has to work for that person.|0.4825|0.423675 |
+An autograph is the signature of someone famous which is specially written for a fan to keep. | The shores or shore of a sea, lake, or wide river is the land along the edge of it.  |0.0050|0.221932 |
+An automobile is a car.|A car is a motor vehicle with room for a small number of passengers.|0.5575      |0.500000 |
+A crane is a large machine that moves heavy things by lifting them in the air.|An implement is a tool or other piece of equipment.|0.1850|0.200479 |
+A forest is a large area where trees grow close together.|Woodland is land with a lot of trees.|0.6275     | 0.333333   | 
+An automobile is a car.|In legends and fairy stories, a wizard is a man who has magic powers.|0.0200    | 0.000000  | 
+A cock is an adult male chicken.   | A rooster is an adult male chicken.  |0.8625        | 0.750000 |
+When you make a journey, you travel from one place to another.    | A voyage is a long journey on a ship or in a spacecraft.     |0.3600      | 0.111111 |
+A boy is a child who will grow up to be a man.|A rooster is an adult male chicken.|0.1075|0.184459 |
 
 
 <a name="spacy"/>
