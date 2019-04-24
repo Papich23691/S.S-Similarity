@@ -91,6 +91,7 @@ Sentence 1 | Sentence 2 | Human benchmark | Similarity algorithm |
 Midday is 12 oclock in the middle of the day.    | Noon is 12 oclock in the middle of the day.       |0.9550| 0.955656|
 A boy is a child who will grow up to be a man.    | A lad is a young man or boy.      |0.5800         | 0.666667   |
 The coast is an area of land that is next to the sea.  | The shores or shore of a sea, lake, or wide river is the land along the edge of it.    |0.5875        | 0.591532              |
+A rooster is an adult male chicken.|A voyage is a long journey on a ship or in a spacecraft.|0.005|0.000000|
 A furnace is a container or enclosed space in which a very hot fire is made, for example, to melt metal, burn rubbish, or produce steam.    | A stove is a piece of equipment which provides heat, either for cooking or for heating a room.     |0.3475      | 0.318863 |
 A bird is a creature with feathers and wings, females lay eggs, and most birds can fly. | A cock is an adult male chicken.  |0.1625      | 0.205201    |
 In former times, serfs were a class of people who had to work on a particular persons land and could not leave without that persons permission.|A slave is someone who is the property of another person and has to work for that person.|0.4825|0.423675 |
@@ -100,9 +101,12 @@ A crane is a large machine that moves heavy things by lifting them in the air.|A
 A forest is a large area where trees grow close together.|Woodland is land with a lot of trees.|0.6275     | 0.333333   | 
 An automobile is a car.|In legends and fairy stories, a wizard is a man who has magic powers.|0.0200    | 0.000000  | 
 A cock is an adult male chicken.   | A rooster is an adult male chicken.  |0.8625        | 0.750000 |
+A magician is a person who entertains people by doing magic tricks.|In legends and fairy stories, a wizard is a man who has magic powers.|0.3550|0.343168 |
 When you make a journey, you travel from one place to another.    | A voyage is a long journey on a ship or in a spacecraft.     |0.3600      | 0.111111 |
 A boy is a child who will grow up to be a man.|A rooster is an adult male chicken.|0.1075|0.184459 |
-
+Glass is a hard transparent substance that is used to make things such as windows and bottles.|A tumbler is a drinking glass with straight sides.|0.1375|0.127719 |
+Cord is strong, thick string.|A smile is the expression that you have on your face when you are pleased or amused, or when you are being friendly.|0.01|0.000000  |
+An autograph is the signature of someone famous which is specially written for a fan to keep.|Your signature is your name, written in your own characteristic way, often at the end of a document to indicate that you wrote the document or that you agree with what it says.|0.4050|0.477340 |
 
 <a name="spacy"/>
 
