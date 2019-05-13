@@ -1,9 +1,11 @@
 CC = g++
+
 SRC = main.cpp py_util.c nlp.cpp linear_space_util.cpp
 OBJ = run
 INCLUDE_DIR = ../include
 CFLAGS+=$(shell python3-config --cflags)
 LDFLAGS+=$(shell python3-config --ldflags)
+INCLUDE_PYTHON = ./
 
 ifeq ($(OS),Windows_NT)
 	INCLUDE_PYTHON=C:\Python36\include
