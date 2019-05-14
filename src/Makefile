@@ -16,6 +16,9 @@ endif
 
 all:
 	@$(CC) $(SRC) -I$(INCLUDE_PYTHON) -I$(INCLUDE_DIR) $(CFLAGS) $(LDFLAGS) -w -o $(OBJ) -std=$(STD)
-$(info Run ./run)
-$(info To use the more accurate but slower model use "en_core_web_lg")
-$(info Otherwise use "en_core_web_sm")
+	$(info Run ./run)
+	$(info To use the more accurate but slower model use "en_core_web_lg")
+	$(info Otherwise use "en_core_web_sm")
+
+clean:
+	@rm -rf ./run ./run.dSYM 

@@ -6,7 +6,7 @@ import warnings
 To use the more accurate but slower model use "en_core_web_lg"
 otherwise use "en_core_web_sm"
 '''
-nlp = spacy.load("en_core_web_lg")
+nlp = spacy.load("en_core_web_sm")
 
 
 '''

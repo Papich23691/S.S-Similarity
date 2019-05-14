@@ -15,9 +15,20 @@ You can view this tool accuracy in this [table](#accuracy)
 
 ## Baby Steps
 ### Requirements
-This tools require python3 as well as spaCy.</br>
+This tools require 'python3-dev' as well as spaCy.</br>
 ### Installation
-In order to download spaCy follow the instructions given in spaCy's [website](https://spacy.io/usage).</br>
+```bash
+$ pip3 install spacy
+```
+For the simple English model
+```bash
+$ python3 -m spacy download en
+```
+For the more accurate English model
+```bash
+$ python3 -m spacy download en_core_web_lg
+```
+For further downloads follow the instructions given in spaCy's [website](https://spacy.io/usage).</br>
 ##### MacOS
 Using MacOS it is important to use python3 in order to install spaCy given the fact that </br>
 python2 isn't built on wide build in MacOS.
