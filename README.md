@@ -15,16 +15,16 @@ You can view this tool accuracy in this [table](#accuracy)
 
 ## Baby Steps
 ### Requirements
-This tools require 'python3-dev' as well as spaCy.</br>
+This tools require `python3-dev` as well as spaCy.</br>
 ### Installation
 ```bash
 $ pip3 install spacy
-```
-For the simple English model
-```bash
 $ python3 -m spacy download en
 ```
+
+</br>
 For the more accurate English model
+
 ```bash
 $ python3 -m spacy download en_core_web_lg
 ```
