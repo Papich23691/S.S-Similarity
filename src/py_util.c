@@ -4,7 +4,7 @@
 #define PFILE "nlp_util"
 #define U_PFILE L"nlp_util"
 
-
+static PyObject *tagger = NULL, *sim = NULL;
 
 /**
  * Initializing python with specific file
@@ -26,28 +26,42 @@ void Py_Init() {
 PyObject *py_function(char *fname, const char *argument, const char *argument2,
                       int argc) {
   PyObject *pValue = NULL, *pModule = NULL, *pFunc, *pArgs = NULL;
-  pModule = PyImport_Import(PyUnicode_FromString(PFILE));
-  if (!pModule) {
+  if (!sim || !tagger)
+  {
+  	pModule = PyImport_Import(PyUnicode_FromString(PFILE));
+  	if (!pModule) {
+    	  PyErr_Print();
+          exit(1);
+        }
+    pFunc = PyObject_GetAttrString(pModule, fname);
+    if (!pFunc) {
     PyErr_Print();
     exit(1);
+    }
+    Py_XDECREF(pModule);
+
+    if (!strcmp(fname,"compare"))
+		  sim = pFunc;
+    else
+      tagger = pFunc;     
   }
-  pFunc = PyObject_GetAttrString(pModule, fname);
-  if (!pFunc) {
-    PyErr_Print();
-    exit(1);
-  }
-  Py_XDECREF(pModule);
   if (!(argc - 1))
     pArgs = Py_BuildValue("(s)", argument);
   else if (argc - 1)
     pArgs = Py_BuildValue("(ss)", argument, argument2);
+
+  if (!strcmp(fname,"compare") )
+		pFunc = sim;
+  else
+    pFunc = tagger;
+  
   /* Calls for function returns to pValue*/
-  pValue = PyObject_CallObject(pFunc, pArgs);
+    
+    pValue = PyObject_CallObject(pFunc, pArgs);
   if (!pValue) {
     PyErr_Print();
     exit(1);
   }
   Py_XDECREF(pArgs);
-  Py_XDECREF(pFunc);
   return pValue;
 }
