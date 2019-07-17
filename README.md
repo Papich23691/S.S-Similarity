@@ -69,16 +69,16 @@ The final result will be calculated using a vector representation of each senten
 we will need a vector space basis.
 ##### Linear space basis
 All the sentences can be represented by the union of the words in the first sentence and the second sentence. <br/>
-But by having similar semantic fields with one another some words in one sentence can be represented as a projection on another word in the another sentence ( In the linear space ). <br/> It means that a sentence can be represented using words which are not a part of it as long <br/>
-as certain words in the sentence can be represented as a projection on them.<br/><br/>
-A word is not considered orthogonal to another word (it has a projection over it) if they are "similar".<br/>
+But by having similar semantic fields with one another some words in one sentence can be in the span of another word in the another sentence ( In the linear space ). <br/> It means that a sentence can be represented using words which are not a part of it as long <br/>
+as certain words in the sentence are linearly dependent by another words in second sentence.<br/><br/>
+2 words are considered linearly dependent if they are "similar".<br/>
 Comparing only words with the same pos tag, words which are similar to one another are defined by this function.
 
 ![equation of similarity](https://latex.codecogs.com/svg.latex?f%20%3A%20S1%20%5Clongrightarrow%20S2%20%5C%5C%20%5C%5Cf%20%3D%20%5C%7B%28x%2Cy%29%20%5C%20%7C%20%5C%20x%20%5Cin%20S1%2C%20y%20%5Cin%20S2%2Csim%28x%2Cy%29%3E0.5%20%5Cland%20%5Cforall%20z%20%5Cin%20S2%2C%20%5Cforall%20w%20%5Cin%20S1%20%2C%20%28sim%28x%2Cy%29%20%5Cgeq%20%28x%2Cz%29%20%5Cland%20sim%28x%2Cy%29%20%5Cgeq%20%28y%2Cw%29%5C%7D%24) 
 
 The basis is a union of the words in the first sentence and the second sentence minus the words from the <br/>
-second sentence which are similar to other words in the first sentence and the orthogonal projection<br/>
-of one word on another is the similarity multiplied by the word.<br/>
+second sentence which are similar to other words in the first sentence. In order to get one word by another<br/>
+similar word you can multiply it by their similarity.<br/>
 In the program the similar words will be saved together in the list representing the basis in order to avoid <br/>
 calculating the similarity twice and checking which words are similar.
 ##### Vectors
