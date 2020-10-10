@@ -119,9 +119,17 @@ Glass is a hard transparent substance that is used to make things such as window
 Cord is strong, thick string.|A smile is the expression that you have on your face when you are pleased or amused, or when you are being friendly.|1|34.0262|0|0|
 An autograph is the signature of someone famous which is specially written for a fan to keep.|Your signature is your name, written in your own characteristic way, often at the end of a document to indicate that you wrote the document or that you agree with what it says.|40.50|69.4671 |47.734|47.734|
 
-*en_core_web_sm* Mean Absolute Error(MAE) - 22.0958 <br/> <br/>
-*en_core_web_md* Mean Absolute Error(MAE) - 6.57057 <br/> <br/>
-*en_core_web_lg* Mean Absolute Error(MAE) - 7.73736 <br/> <br/>
+##### *en_core_web_sm* <br/>
+Mean Absolute Error(MAE) - 22.0958 <br/> 
+Pearson correlation coefficient - 0.6009<br/> <br/>
+
+##### *en_core_web_md* <br/>
+Mean Absolute Error(MAE) - 6.57057 <br/> 
+Pearson correlation coefficient - 0.9442 <br/> <br/> 
+
+##### *en_core_web_lg* <br/>
+Mean Absolute Error(MAE) - 7.73736 <br/> 
+Pearson correlation coefficient - 0.9188 <br/> <br/> 
 
 <a name="spacy"/>
 
