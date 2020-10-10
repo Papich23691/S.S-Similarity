@@ -131,6 +131,8 @@ Pearson correlation coefficient - 0.9442 <br/> <br/>
 Mean Absolute Error(MAE) - 7.73736 <br/> 
 Pearson correlation coefficient - 0.9188 <br/> <br/> 
 
+![graph](graph.png)
+
 <a name="spacy"/>
 
 ## spaCy Tools.
