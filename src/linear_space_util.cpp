@@ -6,7 +6,7 @@
 #define MIN_VALUE 0.5
 
 /* Calculating the dot product between 2 vectors */
-double dot_product(list<double> v1, list<double> v2) {
+double LSUtils::dot_product(list<double> v1, list<double> v2) {
   double sum = 0;
   unsigned long i = 0;
   for (i = 0; i < v1.size(); i++) {
@@ -20,7 +20,7 @@ double dot_product(list<double> v1, list<double> v2) {
 }
 
 /* Creates a basis for the sentence linear space */
-list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2,nlp *nl) {
+list<list<string>> LSUtils::create_basis(list<list<string>> s1, list<list<string>> s2,nlp *nl) {
   list<list<string>> basis;
   list<list<string>>::iterator i, j;
   list<string>::iterator n, m, maxw, maxw2;
@@ -105,14 +105,14 @@ list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2,nlp
  * else the word is not in the sentence so it refers to it as a zero
  * 
  */
-list<double> create_vector(list<list<string>> s, list<list<string>> basis) {
+list<double> LSUtils::create_vector(list<list<string>> s, list<list<string>> basis) {
   list<list<string>>::iterator i;
   list<string>::iterator j;
   list<double> v;
   for (i = basis.begin(); i != basis.end(); i++) {
-    if (element_of_sentence(s, (*(i->begin()))))
+    if (LSUtils::element_of_sentence(s, (*(i->begin()))))
       v.push_back(1);
-    else if (i->size()>1 && element_of_sentence(s, (*++(i->begin()))))
+    else if (i->size()>1 && LSUtils::element_of_sentence(s, (*++(i->begin()))))
     {
       j = i->begin();
       advance(j,2);
@@ -125,7 +125,7 @@ list<double> create_vector(list<list<string>> s, list<list<string>> basis) {
 }
 
 /* Finds if a word is a part of a sentence */
-bool element_of_sentence(list<list<string>> s, string word) {
+bool LSUtils::element_of_sentence(list<list<string>> s, string word) {
     list<list<string>>::iterator i;
     list<string>::iterator j;
     for (i = s.begin(); i != s.end(); i++) {
