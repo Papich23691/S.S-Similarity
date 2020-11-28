@@ -5,16 +5,13 @@
 #include <list>
 #include "py_util.h"
 
-using namespace std;
-
 class NLPUtils{
     public:
         NLPUtils() = delete;
         ~NLPUtils() = delete;
-        static list<list<string> > tokenize(string sentence);
-        static double compare(string word1, string word2);
-        static double semantic_similarity(string sentence1,string sentence2);
-
+        static std::list<std::list<std::string> > tokenize(const std::string sentence);
+        static double compare(const std::string word1, const std::string word2);
+        static double semantic_similarity(const std::string sentence1,const std::string sentence2);
 };
 
 #include "linear_space_util.h"
