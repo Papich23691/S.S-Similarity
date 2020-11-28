@@ -3,7 +3,7 @@
 #include <list>
 #include <string>
 
-#define MIN_VALUE 0.5
+constexpr double MIN_VALUE = 0.5;
 
 /* Calculating the dot product between 2 vectors */
 double LSUtils::dot_product(list<double> v1, list<double> v2) {
@@ -20,51 +20,65 @@ double LSUtils::dot_product(list<double> v1, list<double> v2) {
 }
 
 /* Creates a basis for the sentence linear space */
-list<list<string>> LSUtils::create_basis(list<list<string>> s1, list<list<string>> s2,nlp *nl) {
+list<list<string>> LSUtils::create_basis(list<list<string>> s1, list<list<string>> s2) {
   list<list<string>> basis;
-  list<list<string>>::iterator i, j;
-  list<string>::iterator n, m, maxw, maxw2;
-  double max, sim;
+  list<list<string>>::iterator i;
+  list<list<string>>::iterator j;
+  list<string>::iterator n;
+  list<string>::iterator m;
+  list<string>::iterator maxw; 
+  list<string>::iterator maxw2;
+  double max = 0;
+  double sim = 0;
   bool isfound = false;
+
   /* Comparing only word with the same pos tag */
-  for (i = s1.begin(); i != s1.end(); ++i) {
-    for (j = s2.begin(); j != s2.end(); ++j) {
-      if ((*(i->begin())) == (*(j->begin()))) {
+  for (i = s1.begin(); i != s1.end(); ++i) 
+  {
+    for (j = s2.begin(); j != s2.end(); ++j) 
+    {
+      if ((*(i->begin())) == (*(j->begin()))) 
+      {
         isfound = true;
         /* 2 words are consider the same if the similarity between them is the maximum similarity compared to other words and their similarity is above MIN_VALUE */
-        for (n = ++(i->begin()); n != i->end(); ++n) {
+        for (n = ++(i->begin()); n != i->end(); ++n) 
+        {
           max = MIN_VALUE;
           list<string> v;
           v.push_back(*n);
           maxw = j->end();
-          for (m = ++(j->begin()); m != j->end(); ++m) {
-            if ((*m) == "\0")
-              continue;
-            sim = nl->compare(*n, *m);
-            if (sim >= max) {
+          for (m = ++(j->begin()); m != j->end(); ++m) 
+          {
+            if ((*m) == "\0") continue;
+            sim = NLPUtils::compare(*n, *m);
+            if (sim >= max) 
+            {
               max = sim;
               maxw = m;
-              if (sim == 1)
-                break;
+              if (1 == sim) break;
             }
           }
           /* Checks the other way around and makes sure the two words are indeed the most similar words to one another */
           if (max < 1)
             max = MIN_VALUE;
-          if (maxw != j->end()) {
+          if (maxw != j->end()) 
+          {
             maxw2 = n;
-            if (max < 1) {
-              for (m = ++(i->begin()); m != i->end(); ++m) {
-                sim = nl->compare(*maxw, *m);
-                if (sim >= max) {
+            if (max < 1) 
+            {
+              for (m = ++(i->begin()); m != i->end(); ++m) 
+              {
+                sim = NLPUtils::compare(*maxw, *m);
+                if (sim >= max) 
+                {
                   max = sim;
                   maxw2 = m;
-                  if (sim == 1)
-                    break;
+                  if (sim == 1) break;
                 }
               }
             }
-            if ((*maxw2) == (*n)) {
+            if ((*maxw2) == (*n)) 
+            {
               v.push_back(*maxw);
               v.push_back(to_string(max));
               *maxw = "\0";
@@ -77,8 +91,10 @@ list<list<string>> LSUtils::create_basis(list<list<string>> s1, list<list<string
       }
     }
     /* If a group of the same pos tag doesn't have another corresponding group with the same pos tag in the other sentence, adds all the words inside of it to the basis */
-    if (!isfound) {
-      for (n = ++(i->begin()); n != i->end(); ++n) {
+    if (!isfound) 
+    {
+      for (n = ++(i->begin()); n != i->end(); ++n) 
+      {
         list<string> v;
         v.push_back(*n);
         basis.push_back(v);
@@ -86,8 +102,10 @@ list<list<string>> LSUtils::create_basis(list<list<string>> s1, list<list<string
     }
   }
   /* Adds all the words that are left from the second sentence */
-  for (j = s2.begin(); j != s2.end(); ++j) {
-    for (m = ++(j->begin()); m != j->end(); ++m) {
+  for (j = s2.begin(); j != s2.end(); ++j) 
+  {
+    for (m = ++(j->begin()); m != j->end(); ++m) 
+    {
       if ((*m) == "\0")
         continue;
       list<string> v;
@@ -95,6 +113,7 @@ list<list<string>> LSUtils::create_basis(list<list<string>> s1, list<list<string
       basis.push_back(v);
     }
   }
+
   return basis;
 }
 
@@ -105,13 +124,17 @@ list<list<string>> LSUtils::create_basis(list<list<string>> s1, list<list<string
  * else the word is not in the sentence so it refers to it as a zero
  * 
  */
-list<double> LSUtils::create_vector(list<list<string>> s, list<list<string>> basis) {
+list<double> LSUtils::create_vector(list<list<string>> s, list<list<string>> basis) 
+{
   list<list<string>>::iterator i;
   list<string>::iterator j;
   list<double> v;
-  for (i = basis.begin(); i != basis.end(); i++) {
+  for (i = basis.begin(); i != basis.end(); i++) 
+  {
     if (LSUtils::element_of_sentence(s, (*(i->begin()))))
+    {
       v.push_back(1);
+    }
     else if (i->size()>1 && LSUtils::element_of_sentence(s, (*++(i->begin()))))
     {
       j = i->begin();
@@ -128,10 +151,14 @@ list<double> LSUtils::create_vector(list<list<string>> s, list<list<string>> bas
 bool LSUtils::element_of_sentence(list<list<string>> s, string word) {
     list<list<string>>::iterator i;
     list<string>::iterator j;
-    for (i = s.begin(); i != s.end(); i++) {
-      for (j = ++(i->begin()); j != i->end(); j++) {
+    for (i = s.begin(); i != s.end(); i++) 
+    {
+      for (j = ++(i->begin()); j != i->end(); j++) 
+      {
         if ((*j) == word)
+        {
           return true;
+        }
       }
     }
   return false;

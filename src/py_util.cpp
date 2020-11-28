@@ -11,7 +11,8 @@ static PyObject *sim = nullptr;
  * Initializing python with specific file
  * **(Avoid using multiple times)**
  */
-void PyUtils::py_init() {
+void PyUtils::py_init() 
+{
   wchar_t *argv[1];
   argv[0] = U_PFILE;
   Py_Initialize();
@@ -21,6 +22,13 @@ void PyUtils::py_init() {
 PyUtils::PyUtils()
 {
   py_init();
+  _py_module = PyImport_Import(PyUnicode_FromString(PFILE));
+
+  if (!_py_module) 
+  {
+    PyErr_Print();
+    exit(1);
+  }
 }
 
 /**
@@ -32,52 +40,54 @@ PyUtils::PyUtils()
 PyObject* PyUtils::nlp_py_function(char *fname, const char *argument, const char *argument2,
                       int argc) {
   PyObject *pValue = nullptr;
-  PyObject *pModule = nullptr;
   PyObject *pFunc = nullptr;
   PyObject *pArgs = nullptr;
 
   if (!sim || !tagger)
   {
-  	pModule = PyImport_Import(PyUnicode_FromString(PFILE));
-  	if (!pModule) {
-    	  PyErr_Print();
-          exit(1);
-        }
-    pFunc = PyObject_GetAttrString(pModule, fname);
-    if (!pFunc) {
-    PyErr_Print();
-    exit(1);
+    pFunc = PyObject_GetAttrString(_py_module, fname);
+    if (!pFunc) 
+    {
+      PyErr_Print();
+      exit(1);
     }
-    Py_XDECREF(pModule);
 
     if (!strcmp(fname,"compare"))
+    {
 		  sim = pFunc;
+    }
     else
+    {
       tagger = pFunc;     
+    }
   }
-  if (!(argc - 1))
+  
+  if (1 == argc)
+  {
     pArgs = Py_BuildValue("(s)", argument);
-  else if (argc - 1)
+  }
+  else if (2 == argc)
+  {
     pArgs = Py_BuildValue("(ss)", argument, argument2);
+  }
 
-  if (!strcmp(fname,"compare") )
-		pFunc = sim;
-  else
-    pFunc = tagger;
+  pFunc = (!strcmp(fname,"compare")) ? sim : tagger;
   
   /* Calls for function returns to pValue*/
-    
-    pValue = PyObject_CallObject(pFunc, pArgs);
-  if (!pValue) {
+  pValue = PyObject_CallObject(pFunc, pArgs);
+  if (!pValue) 
+  {
     PyErr_Print();
     exit(1);
   }
   Py_XDECREF(pArgs);
+
   return pValue;
 }
 
 PyUtils::~PyUtils()
 {
+  Py_XDECREF(_py_module);
   Py_Finalize();
 }
 

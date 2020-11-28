@@ -13,7 +13,7 @@ class LSUtils final
         LSUtils() = delete;
         ~LSUtils() = delete;
         static double dot_product(list<double> v1,list<double> v2);
-        static list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2,nlp *nl);
+        static list<list<string>> create_basis(list<list<string>> s1, list<list<string>> s2);
         static list<double> create_vector(list<list<string>> s, list<list<string>> basis);
         static bool element_of_sentence(list<list<string>> s,string word);
 };

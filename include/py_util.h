@@ -8,6 +8,7 @@ class PyUtils final
 {
     private:
         inline static std::shared_ptr<PyUtils> _py_util;
+        PyObject* _py_module;
 
     public:
         static std::shared_ptr<PyUtils> get_py_util();
